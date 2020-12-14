@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "vRNiK/SMMOIxqXrgD3HHqqZbEi301clicQ+0d2UWi7GC8leMaqkiWiH4aJl/IsLTRZFpIPXQSYor4zsYGpmPJA==",
+  "success": true,
+  "projectFilePath": "E:\\code\\File-Watcher\\File-Watcher.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tyler\\.nuget\\packages\\microsoft.csharp\\4.4.1\\microsoft.csharp.4.4.1.nupkg.sha512",
+    "C:\\Users\\Tyler\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.1\\microsoft.extensions.dependencyinjection.5.0.1.nupkg.sha512",
+    "C:\\Users\\Tyler\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\Tyler\\.nuget\\packages\\system.commandline\\2.0.0-beta1.20574.7\\system.commandline.2.0.0-beta1.20574.7.nupkg.sha512",
+    "C:\\Users\\Tyler\\.nuget\\packages\\system.commandline.dragonfruit\\0.3.0-alpha.20574.7\\system.commandline.dragonfruit.0.3.0-alpha.20574.7.nupkg.sha512",
+    "C:\\Users\\Tyler\\.nuget\\packages\\system.commandline.rendering\\0.3.0-alpha.20574.7\\system.commandline.rendering.0.3.0-alpha.20574.7.nupkg.sha512",
+    "C:\\Users\\Tyler\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512"
+  ],
+  "logs": []
+}
