@@ -52,6 +52,21 @@ namespace File_Watcher.Tests.Builders
         }
         
         [Fact]
+        public void WithNotifyFilter_Should_Set_Watcher_NotifyFilter_To_Input_Filter()
+        {
+            // Arrange
+            var sut = new FileSystemWatcherBuilder();
+            const NotifyFilters expectedNotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite;
+
+            // Act
+            var watcher = sut.WithNotifyFilter(expectedNotifyFilter)
+                .Build();
+            
+            // Assert
+            watcher.NotifyFilter.Should().Be(expectedNotifyFilter);
+        }
+        
+        [Fact]
         public void WithFilters_Should_Add_Input_Filters_To_Watcher_Filters()
         {
             // Arrange
