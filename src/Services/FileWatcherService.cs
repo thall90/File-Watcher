@@ -11,30 +11,28 @@ namespace FileWatcher.Services
         private readonly IOnChangedEventDelegate changedEventDelegate;
         private readonly IOnCreatedEventDelegate createdEventDelegate;
         private readonly IOnRenamedEventDelegate renamedEventDelegate;
-        private readonly IFileSystemWatcherBuilder fileSystemWatcherBuilder;
+        private readonly FileSystemWatcher fileSystemWatcher;
 
         public FileWatcherService(
             IOnChangedEventDelegate changedEventDelegate,
             IOnCreatedEventDelegate createdEventDelegate,
             IOnRenamedEventDelegate renamedEventDelegate,
-            IFileSystemWatcherBuilder fileSystemWatcherBuilder)
+            FileSystemWatcher fileSystemWatcher)
         {
             this.changedEventDelegate = changedEventDelegate;
             this.createdEventDelegate = createdEventDelegate;
             this.renamedEventDelegate = renamedEventDelegate;
-            this.fileSystemWatcherBuilder = fileSystemWatcherBuilder;
+            this.fileSystemWatcher = fileSystemWatcher;
         }
 
-        public void Watch(DirectoryInfo directoryInfo, string[] filters)
+        public void Watch(DirectoryInfo directoryInfo)
         {
-            using var watcher = CreateWatcher(directoryInfo, filters);
-            
-            watcher.Changed += changedEventDelegate.OnChanged;
-            watcher.Created += createdEventDelegate.OnCreated;
-            watcher.Deleted += changedEventDelegate.OnChanged;
-            watcher.Renamed += renamedEventDelegate.OnRenamed;
+            fileSystemWatcher.Changed += changedEventDelegate.OnChanged;
+            fileSystemWatcher.Created += createdEventDelegate.OnCreated;
+            fileSystemWatcher.Deleted += changedEventDelegate.OnChanged;
+            fileSystemWatcher.Renamed += renamedEventDelegate.OnRenamed;
         
-            watcher.EnableRaisingEvents = true;
+            fileSystemWatcher.EnableRaisingEvents = true;
             
             Console.WriteLine(
                 $"\n File watcher started for source directory ${directoryInfo.FullName}.\n" +
@@ -43,21 +41,6 @@ namespace FileWatcher.Services
             while (Console.Read() != 'q')
             {
             }
-        }
-
-        private FileSystemWatcher CreateWatcher(DirectoryInfo directoryInfo, string[] filters)
-        {
-            var watcher = fileSystemWatcherBuilder
-                .WithFilters(filters)
-                .WithPath(directoryInfo)
-                .WithNotifyFilter(
-                    NotifyFilters.LastAccess
-                    | NotifyFilters.LastWrite
-                    | NotifyFilters.FileName
-                    | NotifyFilters.DirectoryName)
-                .Build();
-
-            return watcher;
         }
     }
 }

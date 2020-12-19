@@ -1,11 +1,21 @@
 using System;
 using System.IO;
+using System.IO.Abstractions;
 using FileWatcher.Services.Interfaces;
 
 namespace FileWatcher.Services
 {
     public class FileCopyService : IFileCopyService
     {
+        private readonly IFileSystem fileSystem;
+        
+        public FileCopyService() : this (new FileSystem()) {}
+
+        public FileCopyService(IFileSystem fileSystem)
+        {
+            this.fileSystem = fileSystem;
+        }
+
         public void Copy(FileSystemEventArgs e, DirectoryInfo targetPath)
         {
             if (e?.Name == null)
@@ -22,16 +32,24 @@ namespace FileWatcher.Services
         {
             try
             {
-                if (File.Exists(targetFile))
+                var targetDirectory = Path.GetDirectoryName(targetFile);
+                
+                if (!fileSystem.Directory.Exists(targetDirectory))
                 {
-                    File.Delete(targetFile);
+                    fileSystem.Directory.CreateDirectory(targetDirectory);
+                }
+                
+                if (fileSystem.File.Exists(targetFile))
+                {
+                    fileSystem.File.Delete(targetFile);
                 }
 
-                File.Copy(sourceFile, targetFile);
+                fileSystem.File.Copy(sourceFile, targetFile);
             }
             catch (Exception exception)
             {
                 Console.WriteLine($"Failed to copy {sourceFile} to ${targetFile}. See exception: {exception}");
+                throw;
             }
         }
     }

@@ -4,6 +4,6 @@ namespace FileWatcher.Services.Interfaces
 {
     public interface IFileWatcherService
     {
-        void Watch(DirectoryInfo directoryInfo, string[] filters);
+        void Watch(DirectoryInfo directoryInfo);
     }
 }

@@ -46,24 +46,28 @@ namespace FileWatcher.CommandInitializers
         
         private void HandleCopyCommand(DirectoryInfo source, DirectoryInfo target, string[] filters)
         {
-            var fileWatcherService = GetFileWatcherService(target);
+            var fileWatcherService = GetFileWatcherService(target, filters);
             
-            fileWatcherService.Watch(source, filters);
+            fileWatcherService.Watch(source);
         }
 
         private IFileWatcherService GetFileWatcherService(
-            DirectoryInfo target)
+            DirectoryInfo target,
+            string[] filters)
         {
             var (copyFileOnChanged, copyFileOnCreated, copyFileOnRenamed) = GetCopierDelegates(
                 target);
 
-            var fileWatcherService = new FileWatcherService(
-                copyFileOnChanged,
-                copyFileOnCreated,
-                copyFileOnRenamed,
-                fileSystemWatcherBuilder);
+            using (var fileSystemWatcher = CreateWatcher(target, filters))
+            {
+                var fileWatcherService = new FileWatcherService(
+                    copyFileOnChanged,
+                    copyFileOnCreated,
+                    copyFileOnRenamed,
+                    fileSystemWatcher);
 
-            return fileWatcherService;
+                return fileWatcherService;   
+            }
         }
 
         private (ICopyFileOnChangedEventDelegate, ICopyFileOnCreatedEventDelegate, ICopyFileOnRenamedEventDelegate) GetCopierDelegates(
@@ -74,6 +78,21 @@ namespace FileWatcher.CommandInitializers
             copyFileOnRenamedDelegate.TargetPath = target;
 
             return (copyFileOnChangedDelegate, copyFileOnCreatedDelegate, copyFileOnRenamedDelegate);
+        }
+        
+        private FileSystemWatcher CreateWatcher(DirectoryInfo directoryInfo, string[] filters)
+        {
+            var watcher = fileSystemWatcherBuilder
+                .WithFilters(filters)
+                .WithPath(directoryInfo)
+                .WithNotifyFilter(
+                    NotifyFilters.LastAccess
+                    | NotifyFilters.LastWrite
+                    | NotifyFilters.FileName
+                    | NotifyFilters.DirectoryName)
+                .Build();
+
+            return watcher;
         }
     }
 }
