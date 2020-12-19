@@ -432,3 +432,14 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+bin/Debug/net5.0/
+
+obj/Debug/net5.0/
+
+obj/
+
+.idea/.idea.File-Watcher.dir/.idea/
+
+.idea/.idea.FileWatcher/.idea/
+
+.idea/.idea.FileWatcher/

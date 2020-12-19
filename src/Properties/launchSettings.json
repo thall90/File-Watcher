@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "File-Watcher": {
+      "commandName": "Project",
+      "commandLineArgs": "copyonchange C:\\Users\\Tyler\\Documents\\source C:\\Users\\Tyler\\Documents\\target",
+      "environmentVariables": {
+      }
+    }
+  }
+}

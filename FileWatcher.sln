@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File-Watcher", "src\File-Watcher.csproj", "{D2258750-3965-42CB-8773-7FD18C868F51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File-Watcher.Tests", "tests\File-Watcher.Tests\File-Watcher.Tests.csproj", "{EF3A96CF-C7DF-48C8-852F-403FC5D9B1C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2258750-3965-42CB-8773-7FD18C868F51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2258750-3965-42CB-8773-7FD18C868F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2258750-3965-42CB-8773-7FD18C868F51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2258750-3965-42CB-8773-7FD18C868F51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF3A96CF-C7DF-48C8-852F-403FC5D9B1C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF3A96CF-C7DF-48C8-852F-403FC5D9B1C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF3A96CF-C7DF-48C8-852F-403FC5D9B1C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF3A96CF-C7DF-48C8-852F-403FC5D9B1C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
